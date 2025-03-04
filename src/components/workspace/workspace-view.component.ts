@@ -1,14 +1,12 @@
 import { LocatorHost, BaseComponent } from '@trident/e2e-common';
 
 import { ArtifactRowComponent } from './artifact-row.component';
-import { BreadcrumbComponent } from '../subfolder/breadcrumbs.component';
 
 export class WorkspaceViewComponent extends BaseComponent {
     constructor(parent: LocatorHost) {
         super(parent.locator(`workspace-view`));
     }
 
-    readonly breadcrumbs = new BreadcrumbComponent(this.root);
     readonly workspaceHeader = this.locator('trident-workspace-header');
     readonly workspaceHeaderText = this.locator('trident-workspace-header .workspace-name-text');
     readonly actionBar = this.locator('tri-workspace-action-base .action-bar-container');
@@ -64,9 +62,6 @@ export class WorkspaceViewComponent extends BaseComponent {
         return;
     }
 
-    async navigateToSubfolderByClickBreadcrumbs(subfolderName?: string) {
-        await this.breadcrumbs.navigateToSubfolder(subfolderName);
-    }
 
     async navigateToSubfolderByClickItemInListView(subfolderName: string) {
         const item = this.getSingleArtifactByName(subfolderName);
