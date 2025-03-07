@@ -1,9 +1,3 @@
-//-----------------------------------------------------------------------
-// <copyright company="Microsoft Corporation">
-//        Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//-----------------------------------------------------------------------
-
 import { BasePage, createService, FeatureSwitchRecord, IdentityService } from '@trident/e2e-common';
 
 import { HeaderComponent } from '../components/header/header.component';

@@ -1,9 +1,3 @@
-//-----------------------------------------------------------------------
-// <copyright company="Microsoft Corporation">
-//        Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//-----------------------------------------------------------------------
-
 import { expect, LocatorHost, BaseComponent } from '@trident/e2e-common';
 
 
