@@ -18,7 +18,7 @@ const legacyTridentTestCredential: CustomCredentialProvider = {
           {
               username: 'Testuser1@fabricmsit11112024.onmicrosoft.com',
               certificate: {
-                  pfx: fs.readFileSync('./bami-tenant-users-testuser1-fabricmsit11112024-20250306.pfx')
+                  pfx: fs.readFileSync('../bami-tenant-users-testuser1-fabricmsit11112024-20250306.pfx')
               }
           }
       ];
@@ -33,7 +33,7 @@ const legacyTridentTestCredential: CustomCredentialProvider = {
  * Playwright 配置
  */
 export default defineConfig({
-    testDir: path.join(__dirname, './tests'), // 测试目录
+    testDir: path.join(__dirname, './src/tests'), // 测试目录
     use: {
         environment: 'https://msit.powerbi.com', // 指定 DAILY 环境
         credential: [
