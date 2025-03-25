@@ -18,7 +18,7 @@ const legacyTridentTestCredential: CustomCredentialProvider = {
           {
               username: 'Testuser1@fabricmsit11112024.onmicrosoft.com',
               certificate: {
-                  pfx: fs.readFileSync('../bami-tenant-users-testuser1-fabricmsit11112024-20250306.pfx')
+                  pfx: fs.readFileSync('../certificate/bami-tenant-users-testuser1-fabricmsit11112024-20250306.pfx')
               }
           }
       ];
