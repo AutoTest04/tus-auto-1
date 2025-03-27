@@ -2,6 +2,7 @@ import { expect, TestBuilder, Logger, owner, FabricCapacityService, retry } from
 import { WorkspacePage } from '../pages/workspace.page';
 import { PlusNewPanelPage } from '../pages/plus-new-panel.page';
 
+
 const logger = new Logger('workspace-view.tests');
 
 const { test } = TestBuilder.create()
@@ -42,7 +43,7 @@ test.describe('new workspace', () => {
     //     await expect(workspacePage.workspaceSettingsLeftNavPane).toBeVisible();
     // })
 
-    test('create lakehouse', async ({ workspacePage, page, plusNewPanelPage }) => {
+    test('create notebook', async ({ workspacePage, page, plusNewPanelPage, disposeService}) => {
         owner('hhh');
 
         await workspacePage.gotoWorkspace('784bab57-0c44-4690-a238-9a5d44721b05');
@@ -52,6 +53,7 @@ test.describe('new workspace', () => {
         await plusNewPanelPage.ClickCard('notebook')
 
         await page.waitForTimeout(10000);
+        await disposeService.dispose();
     });
 
 })
