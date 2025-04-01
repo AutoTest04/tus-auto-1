@@ -8,12 +8,13 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.50.1",
+    "@playwright/test": "^1.51.1",
     "@types/node": "^22.13.9",
     "@types/uuid": "^10.0.0",
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@axe-core/playwright": "^4.10.1",
     "@trident/e2e-common": "^0.2.28"
   }
 }

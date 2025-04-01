@@ -15,12 +15,16 @@ export class WorkspacePage extends BasePage {
     readonly workspaceView = new WorkspaceViewComponent(this.page);
     readonly workspaceService = this.createService(WorkspaceService);
     readonly gitIntegrationSettingsButton = this.locator('button').getByText('git integration');
+    readonly general = this.locator('button').getByText('general')
     readonly artifactService = this.createService(ArtifactService);
-
+    readonly EditButton = this.locator('button').getByText('Edit')
+    readonly buttonLocator = (buttonText: string) => this.locator('button').getByText(buttonText);
     readonly workspaceSettingsPanel = this.getByTestId('settings-full-panel');
     readonly workspaceSettingsLeftNavPane = this.getByTestId('tri-navigation-panel-tabs-in-workspace-settings');
     readonly manageAccessButton = this.getByTestId('manage-access').locator('visible=true');
     readonly settingsButton = this.getByTestId('workspace-settings').locator('visible=true');
+    readonly licensemode = this.locator('#tri-radio-button-1');
+    readonly selectlicense = this.locator('button').getByText('Select license')
 
     readonly plusNewMenu = this.getByTestId('plus-new-menu');
 
@@ -69,10 +73,13 @@ export class WorkspacePage extends BasePage {
         await this.goto(`/groups/${workspaceObjectId}`);
     }
 
-    async goToWorkspaceSettings(checkMoreSettingsButton = false): Promise<void> {
+
+    async goToWorkspaceSettings(checkMoreSettingsButton = false, listname: string = 'General'): Promise<void> {
         await this.goToWorkspaceSettingsMain(checkMoreSettingsButton);
-        await this.gitIntegrationSettingsButton.click();
+        const button = this.buttonLocator(listname);
+        await button.click();
     }
+        
     async goToWorkspaceSettingsMain(checkMoreSettingsButton = false): Promise<void> {
         if (checkMoreSettingsButton && await this.workspaceView.moreMenuButton.isVisible()) {
             await this.workspaceView.moreMenuButton.click();
