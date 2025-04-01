@@ -17,7 +17,7 @@ test.describe('new workspace', () => {
     //     await workspacePage.goToMyWorkspace();
     //     const workspace = await workspacePage.createWorkspace();
 
-    //     await workspacePage.gotoWorkspace('784bab57-0c44-4690-a238-9a5d44721b05');
+    //     await workspacePage.gotoWorkspace(workspace.objectId);
     // });
 
     // test('Can click Import button @Official@Stable', async ({ workspacePage }) => {
@@ -50,11 +50,13 @@ test.describe('new workspace', () => {
 
         await workspacePage.gotoWorkspace('784bab57-0c44-4690-a238-9a5d44721b05');
 
+
         await workspacePage.openNewItemPanel()
 
         await plusNewPanelPage.ClickCard('notebook')
 
         await page.waitForTimeout(10000);
+
     });
 
 })
