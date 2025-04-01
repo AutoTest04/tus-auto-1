@@ -15,7 +15,7 @@ test.describe('new workspace', () => {
     // test.beforeEach(async ({ workspacePage }) => {
 
     //     await workspacePage.goToMyWorkspace();
-    //     //const workspace = await workspacePage.createWorkspace();
+    //     const workspace = await workspacePage.createWorkspace();
 
     //     await workspacePage.gotoWorkspace('784bab57-0c44-4690-a238-9a5d44721b05');
     // });
@@ -43,8 +43,10 @@ test.describe('new workspace', () => {
     //     await expect(workspacePage.workspaceSettingsLeftNavPane).toBeVisible();
     // })
 
-    test('create notebook', async ({ workspacePage, page, plusNewPanelPage, disposeService}) => {
+    test('create notebook', async ({ workspacePage, page, plusNewPanelPage}) => {
         owner('hhh');
+
+        await workspacePage.createWorkspace();
 
         await workspacePage.gotoWorkspace('784bab57-0c44-4690-a238-9a5d44721b05');
 
@@ -53,7 +55,6 @@ test.describe('new workspace', () => {
         await plusNewPanelPage.ClickCard('notebook')
 
         await page.waitForTimeout(10000);
-        await disposeService.dispose();
     });
 
 })
