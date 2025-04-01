@@ -18,7 +18,7 @@ const legacyTridentTestCredential: CustomCredentialProvider = {
           {
               username: 'AdminUser01@fabricmsit11112024.onmicrosoft.com',
               certificate: {
-                  pfx: fs.readFileSync('./certificate/bami-tenant-adminuser-adminuser01-fabricmsit11112024-20250328.pfx')
+                  pfx: fs.readFileSync('./certificate/bami-tenant-users-testuser1-fabricdxt11112024-20250325.pfx')
               }
           }
       ];
@@ -35,7 +35,7 @@ const legacyTridentTestCredential: CustomCredentialProvider = {
 export default defineConfig({
     testDir: path.join(__dirname, './src/tests'), // 测试目录
     use: {
-        environment: 'https://msit.powerbi.com', 
+        environment: 'https://dxt.powerbi.com', 
         credential: [
           legacyTridentTestCredential,
         ],
