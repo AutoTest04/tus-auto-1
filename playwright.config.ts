@@ -16,9 +16,9 @@ const legacyTridentTestCredential: CustomCredentialProvider = {
   getUserCredentials: async () => {
       const credentials: UserCredential[] = [
           {
-              username: 'AdminUser01@fabricmsit11112024.onmicrosoft.com',
+              username: 'AdminUser01@fabricdxt11112024.onmicrosoft.com',
               certificate: {
-                  pfx: fs.readFileSync('./certificate/bami-tenant-users-testuser1-fabricdxt11112024-20250325.pfx')
+                  pfx: fs.readFileSync('./certificate/bami-tenant-adminuser-adminuser01-fabricdxt11112024-20250401.pfx')
               }
           }
       ];

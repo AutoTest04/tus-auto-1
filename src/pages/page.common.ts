@@ -1,19 +1,17 @@
-import { BasePage, FeatureSwitches, Logger } from '@trident/e2e-common';
-import { Locator, Page } from '@playwright/test';
+import { BasePage, Logger } from '@trident/e2e-common';
+import { Page } from '@playwright/test';
 
 export class PageCommon extends BasePage {
     readonly logger = new Logger('page.common');
 
-    async gotoHome(featureSwitches?: FeatureSwitches) {
+    async gotoHome() {
         this.logger.info(`gotoHome`);
 
-        await this.goto('/home', {
-            featureSwitches: {
-                ...featureSwitches,
+        await this.goto('/home');
+    }
 
-            },
-            waitUntil: 'pbiresourceloaded',
-        });
+    async gotoWorkspaceByID(workspaceObjectId: string): Promise<void> {
+        await this.goto(`/groups/${workspaceObjectId}`);
     }
 
     async gotoWorkspace(WSName: string) {
@@ -33,7 +31,7 @@ export class PageCommon extends BasePage {
     async backToWorkspace() {
         await this.page.locator('//button[@role="menuitem" and contains(@class, "workspaceName") and contains(@class, "navbar-item")]').click();
     }
-    
+
     constructor(public readonly page: Page) {
         super(page);
     }

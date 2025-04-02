@@ -4,6 +4,7 @@ import { NavigationPaneComponent } from '../components/navigation-pane.component
 import { WorkspaceViewComponent } from '../components/workspace/workspace-view.component';
 import { WorkspaceFlyoutComponent } from '../components/workspace/workspace-flyout.component';
 
+
 export interface WorkspacePageConfig {
     workspaceObjectId?: string;
     product?: string;
@@ -31,6 +32,18 @@ export class WorkspacePage extends BasePage {
     readonly plusNewMenuButtons = this.plusNewMenu.locator(`button`);
     readonly plusNewMenuMoreOptionsButton = this.plusNewMenu.getByTestId('more-options-btn');
 
+    readonly importMenu = this.locator('tri-menu-other.themeableElement.tri-menu-with-icons[role="menu"]');
+    readonly importNotebookMenu = this.locator('tri-menu-other.themeableElement.tri-menu-with-icons[aria-activedescendant="Notebook_Local"]');
+
+
+    readonly importNotebookButton = this.importMenu.locator('button[aria-label="Notebook"]');
+    readonly importReportButton = this.importMenu.locator('button[aria-label="Report, Paginated Report or Workbook"]');
+
+    readonly ftcButton = this.importNotebookMenu.locator('button[aria-label="From this computer"]');
+
+    readonly importPanel = this.frameLocator("[data-testid='iframe-panel-de-ds']");
+
+    readonly uploadButton = this.importPanel.locator('button').filter({ hasText: 'Upload' });
     fluentListColumns = (col: string) =>
         this.workspaceView.getByTestId(`fluentListCell.${col}`);
     navbarItem = (objectId: string) =>
@@ -94,6 +107,20 @@ export class WorkspacePage extends BasePage {
         await this.settingsButton.click();
         await this.workspaceSettingsPanel.waitFor();
     }
+
+    async openImportMenu(): Promise<void> {
+        await this.workspaceView.importButton.click();
+    }
+
+    async importNotebook(): Promise<void> {
+        const fileChooserPromise = this.page.waitForEvent('filechooser');
+        await this.openImportMenu();
+        await this.importNotebookButton.click();
+        await this.ftcButton.click();
+        await this.uploadButton.click();
+        const fileChooser = await fileChooserPromise;
+        await fileChooser.setFiles('./Data science scenario.ipynb');
+    }
     //#endregion
 
     //#region left nav()
@@ -133,6 +160,9 @@ export class WorkspacePage extends BasePage {
         await this.workspaceView.plusNewButton.click();
         await this.plusNewMenuMoreOptionsButton.click();
     }
+
+
+
 
 }
 
