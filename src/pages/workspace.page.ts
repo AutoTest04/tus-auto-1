@@ -161,13 +161,12 @@ export class WorkspacePage extends BasePage {
     }
 
     async clickItemByName(name: string): Promise<void> {
-        const item = this.workspaceView.getArtifactByName(name);
-        await item.nameCell.click();
+        const items = await this.workspaceView.getSingleArtifactByName(name);
+        await items.itemName.click();
     }
 
     async filterItemByName(name: string): Promise<void> {
         await this.triListFilter.searchText(name);
-        await this.triListFilter.filterMenuButton.click();
     }
 
     //#endregion

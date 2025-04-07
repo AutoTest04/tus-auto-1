@@ -7,6 +7,7 @@ export class ArtifactRowComponent extends BaseComponent {
     }
 
     readonly nameCell = this.getByTestId('fluentListCell.name');
+    readonly itemName = this.getByTestId('item-name');
     readonly typeCell = this.getByTestId('fluentListCell.type');
     readonly taskCell = this.getByTestId('fluentListCell.task');
     readonly shareButton = this.getByTestId('quick-action-button-Share');

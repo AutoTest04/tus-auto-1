@@ -20,9 +20,16 @@ export class NotebookPage extends PageCommon {
     notebookStatus = '//button//div[contains(text(), "Saved")]';
     iFrame = '//tri-extension-page-outlet//iframe';
     defaultComment = '//html//body//div[contains(@class,"view-lines")]//div[@class="view-line"]//span[contains(text(), "Welcome")]';
-    runCellBtn = '//button[@aria-label="Run all"]';
+    runCellBtn = '//button[@name="RunAll"]';
     addCodeBtn = '//div[@class="drag-handle-anchor"]//button[@aria-label="Add code cell"]';
     selectLanguageBtn = (arg: number) => `//div[@id="NotebookLanguageDropdown"]//button[@id="NotebookLanguage-list${arg}"]`;
+
+    readonly toolbar = this.locator('div[role="toolbar"][class*="fui-Toolbar"]');
+    readonly notebookPage = this.locator('//iframe[@data-testid="iframe-page-de-ds"]');
+
+    readonly runAllBtn = this.notebookPage.locator('button').filter({ hasText: 'RunAll' });
+
+
 
     private readonly artifactService = this.createService(ArtifactService);
     public logger: Logger = new Logger('trident.page.notebook');
@@ -170,7 +177,7 @@ export class NotebookPage extends PageCommon {
     async getDESFrame(iframeType: IFrameType = 'page'): Promise<Frame> {
         this.logger.info(`Getting '${iframeType}' iframe`);
         // locator auto-waiting for de-ds page frame is visible
-        await this.page.locator('//iframe[@data-testid="iframe-page-de-ds"]').waitFor();
+        await this.notebookPage.waitFor();
         const iframe = this.page.frames().find(e => e.url().includes('de-ds') && e.url().includes(iframeType));
         if (!iframe) {
             throw new Error(`Failed to get ${iframeType} frame`);
@@ -179,9 +186,9 @@ export class NotebookPage extends PageCommon {
         return iframe;
     }
 
-    async runCell(): Promise<void> {
+    async runAllCell(): Promise<void> {
         const iframe = await this.getDESFrame();
-        await iframe.locator(this.runCellBtn).click();
+        await iframe.locator(this.runCellBtn).click();   
     }
 
 }
