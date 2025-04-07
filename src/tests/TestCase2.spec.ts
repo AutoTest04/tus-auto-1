@@ -17,21 +17,22 @@ test.describe(' data engineering experience in Microsoft Fabric.',() =>{
 
     // });
 
-    test('Creating a workspace and setting up its configuration',async({ workspacePage, NotebookPage, page, plusNewPanelPage}) =>{
+    test('setting up its configuration',async({ workspacePage, NotebookPage, page}) =>{
         owner('v-jiaqihou')
 
         await NotebookPage.gotoHome()
         await NotebookPage.gotoWorkspace('TUStest')
 
-        //await workspacePage.openNewItemPanel()
-        //await plusNewPanelPage.ClickCard('notebook')
-
-        await expect(workspacePage.workspaceView.importButton).toBeVisible();
+        await expect(workspacePage.workspaceView.importButton).toBeVisible()
         await workspacePage.importNotebook()
+
+        await workspacePage.filterItemByName('Data science scenario')
+        await workspacePage.clickItemByName('Data science scenario')
 
         await page.waitForTimeout(10000)
         
     })
+    
 })
 
  

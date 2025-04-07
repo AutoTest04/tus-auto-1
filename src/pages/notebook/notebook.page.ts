@@ -23,6 +23,7 @@ export class NotebookPage extends PageCommon {
     runCellBtn = '//button[@aria-label="Run all"]';
     addCodeBtn = '//div[@class="drag-handle-anchor"]//button[@aria-label="Add code cell"]';
     selectLanguageBtn = (arg: number) => `//div[@id="NotebookLanguageDropdown"]//button[@id="NotebookLanguage-list${arg}"]`;
+
     private readonly artifactService = this.createService(ArtifactService);
     public logger: Logger = new Logger('trident.page.notebook');
 
@@ -178,5 +179,9 @@ export class NotebookPage extends PageCommon {
         return iframe;
     }
 
+    async runCell(): Promise<void> {
+        const iframe = await this.getDESFrame();
+        await iframe.locator(this.runCellBtn).click();
+    }
 
 }

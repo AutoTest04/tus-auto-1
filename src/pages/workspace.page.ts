@@ -3,6 +3,8 @@ import { v4 } from 'uuid';
 import { NavigationPaneComponent } from '../components/navigation-pane.component';
 import { WorkspaceViewComponent } from '../components/workspace/workspace-view.component';
 import { WorkspaceFlyoutComponent } from '../components/workspace/workspace-flyout.component';
+import { TriListFilterComponent } from '../components/tri-list-filter/tri-list-filter.component';
+
 
 
 export interface WorkspacePageConfig {
@@ -14,9 +16,12 @@ export class WorkspacePage extends BasePage {
     readonly navigationPane = new NavigationPaneComponent(this.page);
     readonly workspaceFlyout = new WorkspaceFlyoutComponent(this.page);
     readonly workspaceView = new WorkspaceViewComponent(this.page);
+
+    readonly triListFilter = new TriListFilterComponent(this.page);
+
     readonly workspaceService = this.createService(WorkspaceService);
     readonly gitIntegrationSettingsButton = this.locator('button').getByText('git integration');
-    readonly general = this.locator('button').getByText('general')
+    readonly general = this.locator('button').getByText('general');
     readonly artifactService = this.createService(ArtifactService);
     readonly EditButton = this.locator('button').getByText('Edit')
     readonly buttonLocator = (buttonText: string) => this.locator('button').getByText(buttonText);
@@ -155,13 +160,21 @@ export class WorkspacePage extends BasePage {
         });
     }
 
+    async clickItemByName(name: string): Promise<void> {
+        const item = this.workspaceView.getArtifactByName(name);
+        await item.nameCell.click();
+    }
+
+    async filterItemByName(name: string): Promise<void> {
+        await this.triListFilter.searchText(name);
+        await this.triListFilter.filterMenuButton.click();
+    }
+
     //#endregion
     async clickMoreOptions(): Promise<void> {
         await this.workspaceView.plusNewButton.click();
         await this.plusNewMenuMoreOptionsButton.click();
     }
-
-
 
 
 }
