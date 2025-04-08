@@ -10,7 +10,7 @@ export const runCellTimeout = 2 * 60 * 1000;
 export const extendRunCellTimeout = 10 * 60 * 1000; // Only use this when the runCellTimeout above cannot succeed
 const openNotebookTimeoutMs = 2 * 60 * 1000;
 
-type IFrameType = 'page' | 'worker';
+type IFrameType = 'page' | 'worker' | 'dialog';
 
 export class NotebookPage extends PageCommon {
 
@@ -27,7 +27,9 @@ export class NotebookPage extends PageCommon {
     readonly toolbar = this.locator('div[role="toolbar"][class*="fui-Toolbar"]');
     readonly notebookPage = this.locator('//iframe[@data-testid="iframe-page-de-ds"]');
 
-    readonly runAllBtn = this.notebookPage.locator('button').filter({ hasText: 'RunAll' });
+    readonly runAllBtn = this.locator('button[name="RunAll"]');
+
+    readonly tourPage = this.locator('//iframe[@data-testid="iframe-dialog-de-ds"]');
 
 
 
@@ -184,6 +186,23 @@ export class NotebookPage extends PageCommon {
         }
         this.logger.info(`Got '${iframeType}' iframe`);
         return iframe;
+    }
+
+    async getDialog(iframeType: IFrameType = 'dialog'): Promise<Frame> {
+        this.logger.info(`Getting '${iframeType}' iframe`);
+        // locator auto-waiting for de-ds page frame is visible
+        await this.tourPage.waitFor();
+        const iframe = this.page.frames().find(e => e.url().includes('de-ds') && e.url().includes(iframeType));
+        if (!iframe) {
+            throw new Error(`Failed to get ${iframeType} frame`);
+        }
+        this.logger.info(`Got '${iframeType}' iframe`);
+        return iframe;
+    }
+
+    async skipTourPage(): Promise<void> {
+        const iframe = await this.getDialog();
+        await iframe.locator('button', { hasText: 'Skip tour' }).click();
     }
 
     async runAllCell(): Promise<void> {

@@ -29,11 +29,12 @@ test.describe(' data engineering experience in Microsoft Fabric.',() =>{
         await workspacePage.filterItemByName('Data science scenario')
         await workspacePage.clickItemByName('Data science scenario')
 
-        await page.waitForTimeout(20000)
-
+        await NotebookPage.skipTourPage()
         await NotebookPage.runAllCell()
 
-        await page.waitForTimeout(50000)
+        await page.waitForTimeout(25000)
+
+        await NotebookPage.backToWorkspace()
         
     })
 })
