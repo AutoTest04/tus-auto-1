@@ -10,46 +10,43 @@ const { test } = TestBuilder.create()
 .p('plusNewPanelPage', PlusNewPanelPage)
 .s('capacity', FabricCapacityService);;
 
-test.describe('new workspace', () => {
+test.describe('P2', () => {
 
-    // test.beforeEach(async ({ workspacePage }) => {
+    test.beforeEach(async ({ workspacePage }) => {
 
-    //     await workspacePage.goToMyWorkspace();
-    //     const workspace = await workspacePage.createWorkspace();
+        await workspacePage.goToMyWorkspace();
+        const workspace = await workspacePage.createWorkspace();
 
-    //     await workspacePage.gotoWorkspace(workspace.objectId);
-    // });
+        await workspacePage.gotoWorkspace(workspace.objectId);
+    });
 
-    // test('Can click Import button @Official@Stable', async ({ workspacePage }) => {
-    //     owner('yanzhang4');
+    test('Should show NewItem Panel', async ({ workspacePage }) => {
+        owner('v-jiaqihou');
 
-    //     await expect(workspacePage.workspaceView.importButton).toBeVisible();
-    // });
+        await workspacePage.openNewItemPanel()
 
-    // test('', async ({ workspacePage, page}) =>{
-    //     owner('hh');
-    //     await retry(async () => {
-    //         if (!await workspacePage.settingsButton.isVisible()) {
-    //             await workspacePage.workspaceView.moreMenuButton.click();
-    //             logger.info(`workspace settings button is invisible, click the menu button`);
-    //         }
-    //        // a relative short timeout to fast retry
-    //         await workspacePage.settingsButton.click({timeout: 2 * 1000});
-    //     }, { times: 3 });
+        await expect(workspacePage.plusNewMenu).toBeVisible();
+    });
 
-    //     await page.waitForTimeout(10000);
+    test('open setting panel', async ({ workspacePage, page}) =>{
+        owner('v-jiaqihou');
+        await retry(async () => {
+            if (!await workspacePage.settingsButton.isVisible()) {
+                await workspacePage.workspaceView.moreMenuButton.click();
+                logger.info(`workspace settings button is invisible, click the menu button`);
+            }
+           // a relative short timeout to fast retry
+            await workspacePage.settingsButton.click({timeout: 2 * 1000});
+        }, { times: 3 });
+
+        await page.waitForTimeout(10000);
  
-    //     await expect(workspacePage.workspaceSettingsPanel).toBeVisible();
-    //     await expect(workspacePage.workspaceSettingsLeftNavPane).toBeVisible();
-    // })
+        await expect(workspacePage.workspaceSettingsPanel).toBeVisible();
+        await expect(workspacePage.workspaceSettingsLeftNavPane).toBeVisible();
+    })
 
     test('create notebook', async ({ workspacePage, page, plusNewPanelPage}) => {
-        owner('hhh');
-
-        await workspacePage.createWorkspace();
-
-        await workspacePage.gotoWorkspace('784bab57-0c44-4690-a238-9a5d44721b05');
-
+        owner('v-jiaqihou');
 
         await workspacePage.openNewItemPanel()
 

@@ -1,4 +1,4 @@
-import { ArtifactService, BasePage, FeatureSwitches, GotoOptions, SubfolderService, Workspace, WorkspaceService, interceptJson, } from '@trident/e2e-common';
+import { ArtifactService, BasePage, FeatureSwitches, GotoOptions, Workspace, WorkspaceService, } from '@trident/e2e-common';
 import { v4 } from 'uuid';
 import { NavigationPaneComponent } from '../components/navigation-pane.component';
 import { WorkspaceViewComponent } from '../components/workspace/workspace-view.component';

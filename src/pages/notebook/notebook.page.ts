@@ -206,6 +206,10 @@ export class NotebookPage extends PageCommon {
     }
 
     async runAllCell(): Promise<void> {
+        const TourPageiframe = await this.getDialog();
+        if (TourPageiframe) {
+            this.skipTourPage()
+        }
         const iframe = await this.getDESFrame();
         await iframe.locator(this.runCellBtn).click();   
     }

@@ -1,4 +1,4 @@
-import { expect, TestBuilder, Logger, owner, FabricCapacityService, retry, WorkspaceService } from '@trident/e2e-common';
+import { expect, TestBuilder, owner, FabricCapacityService } from '@trident/e2e-common';
 import { NotebookPage } from '../pages/notebook/notebook.page';
 import { WorkspacePage } from '../pages/workspace.page';
 import { PlusNewPanelPage } from '../pages/plus-new-panel.page';
@@ -9,15 +9,9 @@ const { test } = TestBuilder.create()
 .p('plusNewPanelPage', PlusNewPanelPage)
 .s('capacity', FabricCapacityService);;
 
-test.describe(' data engineering experience in Microsoft Fabric.',() =>{
+test.describe(' Typical user scenario test in Microsoft Fabric.',() =>{
 
-    // test.beforeEach(async ({ NotebookPage, page}) => {
-
-    //     // await workspacePage.goToMyWorkspace();
-
-    // });
-
-    test('setting up its configuration',async({ workspacePage, NotebookPage, page}) =>{
+    test('setting up test configuration',async({ workspacePage, NotebookPage, page}) =>{
         owner('v-jiaqihou')
 
         await NotebookPage.gotoHome()
@@ -29,12 +23,12 @@ test.describe(' data engineering experience in Microsoft Fabric.',() =>{
         await workspacePage.filterItemByName('Data science scenario')
         await workspacePage.clickItemByName('Data science scenario')
 
-        await NotebookPage.skipTourPage()
         await NotebookPage.runAllCell()
 
         await page.waitForTimeout(25000)
 
         await NotebookPage.backToWorkspace()
+        await page.waitForTimeout(25000)
         
     })
 })
