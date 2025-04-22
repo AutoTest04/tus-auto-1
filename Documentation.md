@@ -1,90 +1,87 @@
 # Automated Complex Scenario Testing - Implementation Documentation
 
----
-
 ## 1. Background and Purpose
-In the Fabric Shell project, to enhance test coverage of real-world user operations, the team designed a series of complex scenario test cases based on official Fabric tutorials. These scenarios reflect typical user behaviors and help verify the stability and reliability of critical functionalities. Due to the complexity and inefficiency of manual testing, the Playwright automation framework was adopted to implement robust regression testing for these flows.
-
----
+In the Fabric Shell project, to enhance test coverage of real-world user operation flows, the team developed a series of complex scenario test cases based on the official Fabric tutorials. These scenarios were designed to reflect authentic user behaviors and assess the stability and reliability of key functionalities. Given the complexity and inefficiency of manual testing, the Playwright automation framework was introduced to implement regression testing for these workflows.
 
 ## 2. Automated Coverage Scenarios
-The following complex user scenarios have been automated:
+The following complex scenarios have been automated:
 
 ### 1. Data Engineering Scenario (Test Case 1)
-- Creating Lakehouse, Pipeline, and Notebooks
-- Executing data processing tasks
-- Managing task flows and organizing content via folder classification
+- Create Lakehouse, Pipeline, and Notebooks
+- Execute data processing
+- Manage task flows and organize content via folder classification
 
 ### 2. Data Science Scenarios (Test Case 2 & 3)
-- Importing notebooks and preparing datasets
-- Training regression and classification models
-- Validating and saving experiment results
+- Import notebooks and prepare data
+- Train regression and classification models
+- Validate and save experiment results
 
 ### 3. Deployment Pipeline Scenario (Test Case 4)
-- Creating Dev/Test/Prod workspaces
-- Configuring and deploying pipelines
-- Verifying successful synchronization across environments
-
----
+- Set up Dev/Test/Prod workspaces
+- Configure and deploy pipeline content
+- Validate synchronization across environments
 
 ## 3. Implementation Details
 
 ### 3.1 Tech Stack
 - **Automation Framework:** Playwright (TypeScript)
-- **Test Structure:** One Playwright test per case under `tests/scenarios/`
-- **Runtime Environment:** Compatible with both local execution and Azure DevOps CI/CD pipelines
-- **Utilities and Techniques:** `expect.poll()`, auto-retry mechanisms, Page Object Model (POM)
+- **Test Structure:** One Playwright test per case, located under `tests/scenarios/`
+- **Runtime Environment:** Supports both local runs and Azure DevOps CI/CD
+- **Tools and Techniques:** `expect.poll()`, auto-retry mechanisms, Page Object Model (POM)
 
 ### 3.2 Automation Strategy
-- Encapsulate UI logic using the Page Object Model for better maintainability
-- Drive tests through configuration for flexible data-driven testing
-- Ensure stability with strategic use of wait conditions and retry logic
+- Encapsulate page logic using the Page Object Model
+- Enable data-driven testing via configuration injection
+- Enhance stability using wait strategies and retry logic
 
 ### 3.3 Special Handling
-- Simulate notebook cell execution using `keyboard.press('Control+Enter')`
-- Perform drag-and-drop actions using `mouse.move`, `mouse.down`, and `mouse.up`
-- Handle file uploads via `setInputFiles()`
+- Simulate notebook execution with `keyboard.press('Control+Enter')`
+- Perform drag-and-drop using `mouse.move`, `mouse.down`, and `mouse.up`
+- Handle file uploads with `setInputFiles()`
 
----
+### 3.4 Automation and Manual Testing Collaboration
+While automation greatly enhances test efficiency and consistency, it is not intended to replace manual testing entirely—particularly in exploratory scenarios or when human judgment is essential (e.g., UI/UX validation).
+
+The current implementation supports two modes:
+
+- **Full Automation Mode:** Executes the entire workflow including setup, operations, and validations.
+- **Preparation-Only Mode:** Prepares the environment and resources (Lakehouses, Pipelines, etc.) for manual validation within the Shell.
+
+This hybrid approach allows:
+
+- Accelerated test setup
+- Human insight in critical Shell behaviors (navigation, UI interactions, task flows)
+- Balanced test coverage with efficiency and adaptability
 
 ## 4. Benefits and Outcomes
 
-| Advantage   | Description                                                               |
-|------------|---------------------------------------------------------------------------|
-| Efficiency | Reduced manual test time from 30+ minutes to under 3 minutes              |
-| Reliability| Eliminates human error; ensures consistent, repeatable test results       |
-| Coverage   | Validates multiple interconnected modules (Notebook, Pipeline, Workspace) |
-| CI/CD Ready| Seamless integration with PR pipelines for automated regression testing   |
-| Reusability| Modular test logic supports adaptation across various projects/platforms  |
-
----
+| Advantage        | Description                                                                 |
+|------------------|------------------------------------------------------------------------------|
+| Efficiency       | Manual execution took 30+ minutes; automation reduces it to under 3 minutes. |
+| Reliability      | Automated flows prevent human error and ensure repeatability.                |
+| Broader Coverage | Validates cross-module operations (Notebook, Pipeline, Workspace, etc.).     |
+| CI/CD Integration| Integrates with PR pipelines for automated verification.                     |
+| Reusability      | Test logic is modular and applicable across different projects or platforms. |
 
 ## 5. Challenges and Solutions
-- **Notebook result validation:** Solved using content checks in the notification panel.
-- **Popup and async loading instability:** Addressed using adaptive timeouts and `waitFor` strategies.
-- **Multitasking panel toggling issues:** Handled through conditional element visibility checks.
-
----
+- **Notebook result detection:** Addressed via content checks in the notification panel
+- **Popup and async load instability:** Resolved with smart timeouts and `waitFor` conditions
+- **Multitasking panel toggling issues:** Handled using conditional element checks
 
 ## 6. Future Improvements
-- Integrate HTML report generators like Allure for richer test reporting
-- Enable parallel execution to improve runtime efficiency
-- Expand test coverage to include edge cases and i18n scenarios
-- Investigate mobile and cross-browser support for broader compatibility
-
----
+- Integrate test report tools such as Allure
+- Enable parallel execution to improve test throughput
+- Expand coverage to include edge cases and i18n scenarios
+- Extend testing to mobile platforms and multiple browsers
 
 ## 7. Usage Instructions
 
 - **Test Script Location:** `tests/scenarios/`
 
 ```bash
-# Run Test Command
+# Run Command
 npx playwright test tests/scenarios/test-case-1.spec.ts
 
 # Install Dependencies
 npm install
 npx playwright install
-```
-
----
