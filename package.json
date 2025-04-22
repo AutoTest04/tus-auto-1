@@ -2,7 +2,10 @@
   "name": "tus-auto-3",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "e2e": "playwright test",
+    "e2e-headed": "playwright test --headed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
