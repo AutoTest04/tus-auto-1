@@ -67,12 +67,4 @@ This hybrid approach allows:
 
 ## 6. Usage Instructions
 
-- **Test Script Location:** `src/tests/`
-
-```bash
-# Run Command
-npx playwright test tests/scenarios/test-case-1.spec.ts
-
-# Install Dependencies
-npm install
-npx playwright install
+- Please see the readme
