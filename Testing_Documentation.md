@@ -25,21 +25,17 @@ The following complex scenarios have been automated:
 
 ### 3.1 Tech Stack
 - **Automation Framework:** Playwright (TypeScript)
-- **Test Structure:** One Playwright test per case, located under `tests/scenarios/`
-- **Runtime Environment:** Supports both local runs and Azure DevOps CI/CD
-- **Tools and Techniques:** `expect.poll()`, auto-retry mechanisms, Page Object Model (POM)
+- **Test Structure:** One Playwright test per case, located under `src/tests/`
+- **Runtime Environment:** Supports local runs
+
 
 ### 3.2 Automation Strategy
 - Encapsulate page logic using the Page Object Model
 - Enable data-driven testing via configuration injection
 - Enhance stability using wait strategies and retry logic
 
-### 3.3 Special Handling
-- Simulate notebook execution with `keyboard.press('Control+Enter')`
-- Perform drag-and-drop using `mouse.move`, `mouse.down`, and `mouse.up`
-- Handle file uploads with `setInputFiles()`
 
-### 3.4 Automation and Manual Testing Collaboration
+### 3.3 Automation and Manual Testing Collaboration
 While automation greatly enhances test efficiency and consistency, it is not intended to replace manual testing entirely—particularly in exploratory scenarios or when human judgment is essential (e.g., UI/UX validation).
 
 The current implementation supports two modes:
@@ -60,23 +56,18 @@ This hybrid approach allows:
 | Efficiency       | Manual execution took 30+ minutes; automation reduces it to under 3 minutes. |
 | Reliability      | Automated flows prevent human error and ensure repeatability.                |
 | Broader Coverage | Validates cross-module operations (Notebook, Pipeline, Workspace, etc.).     |
-| CI/CD Integration| Integrates with PR pipelines for automated verification.                     |
 | Reusability      | Test logic is modular and applicable across different projects or platforms. |
 
-## 5. Challenges and Solutions
-- **Notebook result detection:** Addressed via content checks in the notification panel
-- **Popup and async load instability:** Resolved with smart timeouts and `waitFor` conditions
-- **Multitasking panel toggling issues:** Handled using conditional element checks
 
-## 6. Future Improvements
+## 5. Future Improvements
 - Integrate test report tools such as Allure
 - Enable parallel execution to improve test throughput
 - Expand coverage to include edge cases and i18n scenarios
 - Extend testing to mobile platforms and multiple browsers
 
-## 7. Usage Instructions
+## 6. Usage Instructions
 
-- **Test Script Location:** `tests/scenarios/`
+- **Test Script Location:** `src/tests/`
 
 ```bash
 # Run Command
