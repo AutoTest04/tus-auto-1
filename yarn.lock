@@ -4,7 +4,7 @@
 
 "@axe-core/playwright@^4.10.1":
   version "4.10.1"
-  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@axe-core/playwright/-/playwright-4.10.1.tgz#c811ba8bfa244833cce422c4131e0043828c42cc"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@axe-core/playwright/-/playwright-4.10.1.tgz"
   integrity sha1-yBG6i/okSDPM5CLEEx4AQ4KMQsw=
   dependencies:
     axe-core "~4.10.2"
@@ -247,12 +247,45 @@
     jsonwebtoken "^9.0.0"
     uuid "^8.3.0"
 
-"@playwright/test@^1.51.1":
-  version "1.51.1"
-  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@playwright/test/-/test-1.51.1.tgz#75357d513221a7be0baad75f01e966baf9c41a2e"
-  integrity sha1-dTV9UTIhp74LqtdfAelmuvnEGi4=
+"@isaacs/balanced-match@^4.0.1":
+  version "4.0.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@isaacs/balanced-match/-/balanced-match-4.0.1.tgz"
+  integrity sha1-MIHa28NGBmG3UedZHX+upd853Sk=
+
+"@isaacs/brace-expansion@^5.0.0":
+  version "5.0.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@isaacs/brace-expansion/-/brace-expansion-5.0.0.tgz"
+  integrity sha1-Sz2rq32OdaQpQUqWvWe/TB0T4PM=
   dependencies:
-    playwright "1.51.1"
+    "@isaacs/balanced-match" "^4.0.1"
+
+"@nodelib/fs.scandir@2.1.5":
+  version "2.1.5"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
+  integrity sha1-dhnC6yGyVIP20WdUi0z9WnSIw9U=
+  dependencies:
+    "@nodelib/fs.stat" "2.0.5"
+    run-parallel "^1.1.9"
+
+"@nodelib/fs.stat@2.0.5", "@nodelib/fs.stat@^2.0.2":
+  version "2.0.5"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz"
+  integrity sha1-W9Jir5Tp0lvR5xsF3u1Eh2oiLos=
+
+"@nodelib/fs.walk@^1.2.3":
+  version "1.2.8"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz"
+  integrity sha1-6Vc36LtnRt3t9pxVaVNJTxlv5po=
+  dependencies:
+    "@nodelib/fs.scandir" "2.1.5"
+    fastq "^1.6.0"
+
+"@playwright/test@^1.51.1":
+  version "1.53.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@playwright/test/-/test-1.53.0.tgz"
+  integrity sha1-I+CrrBQvBbazFcLaGRKReK67lOQ=
+  dependencies:
+    playwright "1.53.0"
 
 "@trident/e2e-common@^0.2.28":
   version "0.2.28"
@@ -272,12 +305,28 @@
     minimatch "^5.1.0"
     uuid "8.3.2"
 
+"@ts-morph/common@~0.27.0":
+  version "0.27.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@ts-morph/common/-/common-0.27.0.tgz"
+  integrity sha1-6Dob18usBUBFxiRqfEyZ6rdpLUY=
+  dependencies:
+    fast-glob "^3.3.3"
+    minimatch "^10.0.1"
+    path-browserify "^1.0.1"
+
 "@types/node@^22.13.9":
   version "22.13.9"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@types/node/-/node-22.13.9.tgz"
   integrity sha1-XZqPepdaW9PvJnNS3rlvsT7ALso=
   dependencies:
     undici-types "~6.20.0"
+
+"@types/node@^24.0.1":
+  version "24.0.3"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/@types/node/-/node-24.0.3.tgz"
+  integrity sha1-+TWRDz7s46Oi+L6GuWuoM9wobKs=
+  dependencies:
+    undici-types "~7.8.0"
 
 "@types/sarif@>=2.1.1 <=2.1.2":
   version "2.1.2"
@@ -330,7 +379,7 @@ axe-core@^3.2.2:
 
 axe-core@~4.10.2:
   version "4.10.3"
-  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/axe-core/-/axe-core-4.10.3.tgz#04145965ac7894faddbac30861e5d8f11bfd14fc"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/axe-core/-/axe-core-4.10.3.tgz"
   integrity sha1-BBRZZax4lPrdusMIYeXY8Rv9FPw=
 
 axe-sarif-converter@2.2.0:
@@ -383,6 +432,13 @@ brace-expansion@^2.0.1:
   dependencies:
     balanced-match "^1.0.0"
 
+braces@^3.0.3:
+  version "3.0.3"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/braces/-/braces-3.0.3.tgz"
+  integrity sha1-SQMy9AkZRSJy1VqEgK3AxEE1h4k=
+  dependencies:
+    fill-range "^7.1.1"
+
 buffer-equal-constant-time@1.0.1:
   version "1.0.1"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz"
@@ -430,6 +486,11 @@ cliui@^5.0.0:
     strip-ansi "^5.2.0"
     wrap-ansi "^5.1.0"
 
+code-block-writer@^13.0.3:
+  version "13.0.3"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/code-block-writer/-/code-block-writer-13.0.3.tgz"
+  integrity sha1-kPioR2OlAS2nr2ExndY4ZVrpC1s=
+
 color-convert@^1.9.0:
   version "1.9.3"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/color-convert/-/color-convert-1.9.3.tgz"
@@ -465,6 +526,11 @@ commondir@^1.0.1:
   version "1.0.1"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/commondir/-/commondir-1.0.1.tgz"
   integrity sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=
+
+core-util-is@~1.0.0:
+  version "1.0.3"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/core-util-is/-/core-util-is-1.0.3.tgz"
+  integrity sha1-pgQtNjTCsn6TKPg3uWX6yDgI24U=
 
 debug@4, debug@^4.3.4:
   version "4.4.0"
@@ -523,6 +589,18 @@ detect-libc@^2.0.0:
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/detect-libc/-/detect-libc-2.0.3.tgz"
   integrity sha1-8M1QO0D5k5uJRpfRmtUIleMM9wA=
 
+docx@^9.5.1:
+  version "9.5.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/docx/-/docx-9.5.1.tgz"
+  integrity sha1-MlycRdzPBS5XgFFdYGjoD97oGWA=
+  dependencies:
+    "@types/node" "^24.0.1"
+    hash.js "^1.1.7"
+    jszip "^3.10.1"
+    nanoid "^5.1.3"
+    xml "^1.0.1"
+    xml-js "^1.6.8"
+
 ecdsa-sig-formatter@1.0.11:
   version "1.0.11"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz"
@@ -552,10 +630,35 @@ expand-template@^2.0.3:
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/expand-template/-/expand-template-2.0.3.tgz"
   integrity sha1-bhSz/O4POmNA7LV9LokYaSBSpHw=
 
+fast-glob@^3.3.3:
+  version "3.3.3"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/fast-glob/-/fast-glob-3.3.3.tgz"
+  integrity sha1-0G1YXOjbqQoWsFBcVDw8z7OuuBg=
+  dependencies:
+    "@nodelib/fs.stat" "^2.0.2"
+    "@nodelib/fs.walk" "^1.2.3"
+    glob-parent "^5.1.2"
+    merge2 "^1.3.0"
+    micromatch "^4.0.8"
+
+fastq@^1.6.0:
+  version "1.19.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/fastq/-/fastq-1.19.1.tgz"
+  integrity sha1-1Q6rqAPIhGqIPBZJKCHrzSzaVfU=
+  dependencies:
+    reusify "^1.0.4"
+
 file-uri-to-path@1.0.0:
   version "1.0.0"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz"
   integrity sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=
+
+fill-range@^7.1.1:
+  version "7.1.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/fill-range/-/fill-range-7.1.1.tgz"
+  integrity sha1-RCZdPKwH4+p9wkdRY4BkN1SgUpI=
+  dependencies:
+    to-regex-range "^5.0.1"
 
 find-cache-dir@3.3.2:
   version "3.3.2"
@@ -610,10 +713,25 @@ github-from-package@0.0.0:
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/github-from-package/-/github-from-package-0.0.0.tgz"
   integrity sha1-l/tdlr/eiXMxPyDoKI75oWf6ZM4=
 
+glob-parent@^5.1.2:
+  version "5.1.2"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/glob-parent/-/glob-parent-5.1.2.tgz"
+  integrity sha1-hpgyxYA0/mikCTwX3BXoNA2EAcQ=
+  dependencies:
+    is-glob "^4.0.1"
+
 has-flag@^4.0.0:
   version "4.0.0"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/has-flag/-/has-flag-4.0.0.tgz"
   integrity sha1-lEdx/ZyByBJlxNaUGGDaBrtZR5s=
+
+hash.js@^1.1.7:
+  version "1.1.7"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/hash.js/-/hash.js-1.1.7.tgz"
+  integrity sha1-C6vKU46NTuSg+JiNaIZlN6ADz0I=
+  dependencies:
+    inherits "^2.0.3"
+    minimalistic-assert "^1.0.1"
 
 http-proxy-agent@^7.0.0:
   version "7.0.2"
@@ -631,12 +749,29 @@ https-proxy-agent@^7.0.0:
     agent-base "^7.1.2"
     debug "4"
 
+iconv-lite@^0.6.3:
+  version "0.6.3"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/iconv-lite/-/iconv-lite-0.6.3.tgz"
+  integrity sha1-pS+AvzjaGVLrXGgXkHGYcaGnJQE=
+  dependencies:
+    safer-buffer ">= 2.1.2 < 3.0.0"
+
 ieee754@^1.1.13:
   version "1.2.1"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/ieee754/-/ieee754-1.2.1.tgz"
   integrity sha1-jrehCmP/8l0VpXsAFYbRd9Gw01I=
 
-inherits@^2.0.3, inherits@^2.0.4:
+image-size@^2.0.2:
+  version "2.0.2"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/image-size/-/image-size-2.0.2.tgz#84a7b43704db5736f364bf0d1b029821299b4bdc"
+  integrity sha1-hKe0NwTbVzbzZL8NGwKYISmbS9w=
+
+immediate@~3.0.5:
+  version "3.0.6"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/immediate/-/immediate-3.0.6.tgz"
+  integrity sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=
+
+inherits@^2.0.3, inherits@^2.0.4, inherits@~2.0.3:
   version "2.0.4"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/inherits/-/inherits-2.0.4.tgz"
   integrity sha1-D6LGT5MpF8NDOg3tVTY6rjdBa3w=
@@ -656,10 +791,22 @@ is-docker@^3.0.0:
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/is-docker/-/is-docker-3.0.0.tgz"
   integrity sha1-kAk6oxBid9inelkQ265xdH4VogA=
 
+is-extglob@^2.1.1:
+  version "2.1.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/is-extglob/-/is-extglob-2.1.1.tgz"
+  integrity sha1-qIwCU1eR8C7TfHahueqXc8gz+MI=
+
 is-fullwidth-code-point@^2.0.0:
   version "2.0.0"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/is-fullwidth-code-point/-/is-fullwidth-code-point-2.0.0.tgz"
   integrity sha1-o7MKXE8ZkYMWeqq5O+764937ZU8=
+
+is-glob@^4.0.1:
+  version "4.0.3"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/is-glob/-/is-glob-4.0.3.tgz"
+  integrity sha1-ZPYeQsu7LuwgcanawLKLoeZdUIQ=
+  dependencies:
+    is-extglob "^2.1.1"
 
 is-inside-container@^1.0.0:
   version "1.0.0"
@@ -667,6 +814,11 @@ is-inside-container@^1.0.0:
   integrity sha1-6B+6aZZi6zHb2vJnZqYdSBRxfqQ=
   dependencies:
     is-docker "^3.0.0"
+
+is-number@^7.0.0:
+  version "7.0.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/is-number/-/is-number-7.0.0.tgz"
+  integrity sha1-dTU0W4lnNNX4DE0GxQlVUnoU8Ss=
 
 is-wsl@^2.2.0:
   version "2.2.0"
@@ -681,6 +833,11 @@ is-wsl@^3.1.0:
   integrity sha1-4cZX45wQCQr8vt7GFyD2uSTDy9I=
   dependencies:
     is-inside-container "^1.0.0"
+
+isarray@~1.0.0:
+  version "1.0.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/isarray/-/isarray-1.0.0.tgz"
+  integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
 
 jsonwebtoken@^9.0.0:
   version "9.0.2"
@@ -697,6 +854,16 @@ jsonwebtoken@^9.0.0:
     lodash.once "^4.0.0"
     ms "^2.1.1"
     semver "^7.5.4"
+
+jszip@^3.10.1:
+  version "3.10.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/jszip/-/jszip-3.10.1.tgz"
+  integrity sha1-NK7nDrGOofrsL1iSCKFX0f6wkcI=
+  dependencies:
+    lie "~3.3.0"
+    pako "~1.0.2"
+    readable-stream "~2.3.6"
+    setimmediate "^1.0.5"
 
 jwa@^1.4.1:
   version "1.4.1"
@@ -739,6 +906,13 @@ keytar@^7.6.0, keytar@^7.8.0:
   dependencies:
     node-addon-api "^4.3.0"
     prebuild-install "^7.0.1"
+
+lie@~3.3.0:
+  version "3.3.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/lie/-/lie-3.3.0.tgz"
+  integrity sha1-3Pgt7lRfRgdNryAMfBxaCOD0D2o=
+  dependencies:
+    immediate "~3.0.5"
 
 locate-path@^3.0.0:
   version "3.0.0"
@@ -797,6 +971,19 @@ make-dir@^3.0.2:
   dependencies:
     semver "^6.0.0"
 
+merge2@^1.3.0:
+  version "1.4.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/merge2/-/merge2-1.4.1.tgz"
+  integrity sha1-Q2iJL4hekHRVpv19xVwMnUBJkK4=
+
+micromatch@^4.0.8:
+  version "4.0.8"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/micromatch/-/micromatch-4.0.8.tgz"
+  integrity sha1-1m+hjzpHB2eJMgubGvMr2G2fogI=
+  dependencies:
+    braces "^3.0.3"
+    picomatch "^2.3.1"
+
 mime-db@1.52.0:
   version "1.52.0"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/mime-db/-/mime-db-1.52.0.tgz"
@@ -819,6 +1006,18 @@ mimic-response@^3.1.0:
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/mimic-response/-/mimic-response-3.1.0.tgz"
   integrity sha1-LR1Zr5wbEpgVrMwsRqAipc4fo8k=
 
+minimalistic-assert@^1.0.1:
+  version "1.0.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz"
+  integrity sha1-LhlN4ERibUoQ5/f7wAznPoPk1cc=
+
+minimatch@^10.0.1:
+  version "10.0.3"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/minimatch/-/minimatch-10.0.3.tgz"
+  integrity sha1-z3oDFKFsTZq3OncwoOjjw1AtR6o=
+  dependencies:
+    "@isaacs/brace-expansion" "^5.0.0"
+
 minimatch@^5.1.0:
   version "5.1.6"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/minimatch/-/minimatch-5.1.6.tgz"
@@ -840,6 +1039,11 @@ ms@^2.1.1, ms@^2.1.3:
   version "2.1.3"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/ms/-/ms-2.1.3.tgz"
   integrity sha1-V0yBOM4dK1hh8LRFedut1gxmFbI=
+
+nanoid@^5.1.3:
+  version "5.1.5"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/nanoid/-/nanoid-5.1.5.tgz"
+  integrity sha1-91l/nZBU602pVIzdU8pw8XkOh94=
 
 napi-build-utils@^2.0.0:
   version "2.0.0"
@@ -910,6 +1114,16 @@ p-try@^2.0.0:
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/p-try/-/p-try-2.2.0.tgz"
   integrity sha1-yyhoVA4xPWHeWPr741zpAE1VQOY=
 
+pako@~1.0.2:
+  version "1.0.11"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/pako/-/pako-1.0.11.tgz"
+  integrity sha1-bJWZ00DVTf05RjgCUqNXBaa5kr8=
+
+path-browserify@^1.0.1:
+  version "1.0.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/path-browserify/-/path-browserify-1.0.1.tgz"
+  integrity sha1-2YRUqcN1PVeQhg8W9ohnueRr4f0=
+
 path-exists@^3.0.0:
   version "3.0.0"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/path-exists/-/path-exists-3.0.0.tgz"
@@ -920,6 +1134,11 @@ path-exists@^4.0.0:
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/path-exists/-/path-exists-4.0.0.tgz"
   integrity sha1-UTvb4tO5XXdi6METfvoZXGxhtbM=
 
+picomatch@^2.3.1:
+  version "2.3.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/picomatch/-/picomatch-2.3.1.tgz"
+  integrity sha1-O6ODNzNkbZ0+SZWUbBNlpn+wekI=
+
 pkg-dir@^4.1.0:
   version "4.2.0"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/pkg-dir/-/pkg-dir-4.2.0.tgz"
@@ -927,17 +1146,17 @@ pkg-dir@^4.1.0:
   dependencies:
     find-up "^4.0.0"
 
-playwright-core@1.51.1:
-  version "1.51.1"
-  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/playwright-core/-/playwright-core-1.51.1.tgz#d57f0393e02416f32a47cf82b27533656a8acce1"
-  integrity sha1-1X8Dk+AkFvMqR8+CsnUzZWqKzOE=
+playwright-core@1.53.0:
+  version "1.53.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/playwright-core/-/playwright-core-1.53.0.tgz"
+  integrity sha1-vyc4zBQxFrYTC3jgxkTt8uflP/Q=
 
-playwright@1.51.1:
-  version "1.51.1"
-  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/playwright/-/playwright-1.51.1.tgz#ae1467ee318083968ad28d6990db59f47a55390f"
-  integrity sha1-rhRn7jGAg5aK0o1pkNtZ9HpVOQ8=
+playwright@1.53.0:
+  version "1.53.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/playwright/-/playwright-1.53.0.tgz"
+  integrity sha1-Tq54qiTjxxS/cZgfgLMxC4OGkv0=
   dependencies:
-    playwright-core "1.51.1"
+    playwright-core "1.53.0"
   optionalDependencies:
     fsevents "2.3.2"
 
@@ -959,6 +1178,11 @@ prebuild-install@^7.0.1, prebuild-install@^7.1.1:
     tar-fs "^2.0.0"
     tunnel-agent "^0.6.0"
 
+process-nextick-args@~2.0.0:
+  version "2.0.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
+  integrity sha1-eCDZsWEgzFXKmud5JoCufbptf+I=
+
 pump@^3.0.0:
   version "3.0.2"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/pump/-/pump-3.0.2.tgz"
@@ -966,6 +1190,11 @@ pump@^3.0.0:
   dependencies:
     end-of-stream "^1.1.0"
     once "^1.3.1"
+
+queue-microtask@^1.2.2:
+  version "1.2.3"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/queue-microtask/-/queue-microtask-1.2.3.tgz"
+  integrity sha1-SSkii7xyTfrEPg77BYyve2z7YkM=
 
 rc@^1.2.7:
   version "1.2.8"
@@ -986,6 +1215,19 @@ readable-stream@^3.1.1, readable-stream@^3.4.0:
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
 
+readable-stream@~2.3.6:
+  version "2.3.8"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/readable-stream/-/readable-stream-2.3.8.tgz"
+  integrity sha1-kRJegEK7obmIf0k0X2J3Anzovps=
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.3"
+    isarray "~1.0.0"
+    process-nextick-args "~2.0.0"
+    safe-buffer "~5.1.1"
+    string_decoder "~1.1.1"
+    util-deprecate "~1.0.1"
+
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/require-directory/-/require-directory-2.1.1.tgz"
@@ -996,15 +1238,42 @@ require-main-filename@^2.0.0:
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/require-main-filename/-/require-main-filename-2.0.0.tgz"
   integrity sha1-0LMp7MfMD2Fkn2IhW+aa9UqomJs=
 
+reusify@^1.0.4:
+  version "1.1.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/reusify/-/reusify-1.1.0.tgz"
+  integrity sha1-D+E7lSLhRz9RtVjueW4I8R+bSJ8=
+
 run-applescript@^7.0.0:
   version "7.0.0"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/run-applescript/-/run-applescript-7.0.0.tgz"
   integrity sha1-5aVTwr/9Yg4WnSdsHNjxtkd4++s=
 
+run-parallel@^1.1.9:
+  version "1.2.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/run-parallel/-/run-parallel-1.2.0.tgz"
+  integrity sha1-ZtE2jae9+SHrnZW9GpIp5/IaQ+4=
+  dependencies:
+    queue-microtask "^1.2.2"
+
 safe-buffer@^5.0.1, safe-buffer@~5.2.0:
   version "5.2.1"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/safe-buffer/-/safe-buffer-5.2.1.tgz"
   integrity sha1-Hq+fqb2x/dTsdfWPnNtOa3gn7sY=
+
+safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+  version "5.1.2"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/safe-buffer/-/safe-buffer-5.1.2.tgz"
+  integrity sha1-mR7GnSluAxN0fVm9/St0XDX4go0=
+
+"safer-buffer@>= 2.1.2 < 3.0.0":
+  version "2.1.2"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/safer-buffer/-/safer-buffer-2.1.2.tgz"
+  integrity sha1-RPoWGwGHuVSd2Eu5GAL5vYOFzWo=
+
+sax@^1.2.4:
+  version "1.4.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/sax/-/sax-1.4.1.tgz"
+  integrity sha1-RMyJiDd/EmME07P8EBDHM7kp7w8=
 
 semver@^6.0.0:
   version "6.3.1"
@@ -1020,6 +1289,11 @@ set-blocking@^2.0.0:
   version "2.0.0"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/set-blocking/-/set-blocking-2.0.0.tgz"
   integrity sha1-BF+XgtARrppoA93TgrJDkrPYkPc=
+
+setimmediate@^1.0.5:
+  version "1.0.5"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/setimmediate/-/setimmediate-1.0.5.tgz"
+  integrity sha1-KQy7Iy4waULX1+qbg3Mqt4VvgoU=
 
 simple-concat@^1.0.0:
   version "1.0.1"
@@ -1055,6 +1329,13 @@ string_decoder@^1.1.1:
   integrity sha1-QvEUWUpGzxqOMLCoT1bHjD7awh4=
   dependencies:
     safe-buffer "~5.2.0"
+
+string_decoder@~1.1.1:
+  version "1.1.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/string_decoder/-/string_decoder-1.1.1.tgz"
+  integrity sha1-nPFhG6YmhdcDCunkujQUnDrwP8g=
+  dependencies:
+    safe-buffer "~5.1.0"
 
 strip-ansi@^5.0.0, strip-ansi@^5.1.0, strip-ansi@^5.2.0:
   version "5.2.0"
@@ -1096,6 +1377,21 @@ tar-stream@^2.1.4:
     inherits "^2.0.3"
     readable-stream "^3.1.1"
 
+to-regex-range@^5.0.1:
+  version "5.0.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/to-regex-range/-/to-regex-range-5.0.1.tgz"
+  integrity sha1-FkjESq58jZiKMmAY7XL1tN0DkuQ=
+  dependencies:
+    is-number "^7.0.0"
+
+ts-morph@^26.0.0:
+  version "26.0.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/ts-morph/-/ts-morph-26.0.0.tgz"
+  integrity sha1-1DXMrJQh1GFf3ovob+54LxjNn3M=
+  dependencies:
+    "@ts-morph/common" "~0.27.0"
+    code-block-writer "^13.0.3"
+
 tslib@^2.2.0, tslib@^2.6.2, tslib@^2.8.1:
   version "2.8.1"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/tslib/-/tslib-2.8.1.tgz"
@@ -1118,7 +1414,12 @@ undici-types@~6.20.0:
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/undici-types/-/undici-types-6.20.0.tgz"
   integrity sha1-gXG/IsH1iNFVTVW/IEvGJK84hDM=
 
-util-deprecate@^1.0.1:
+undici-types@~7.8.0:
+  version "7.8.0"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/undici-types/-/undici-types-7.8.0.tgz"
+  integrity sha1-3gC4W3EMVBIuRPv9kR+NcBdM0pQ=
+
+util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
@@ -1146,6 +1447,18 @@ wrappy@1:
   version "1.0.2"
   resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/wrappy/-/wrappy-1.0.2.tgz"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
+
+xml-js@^1.6.8:
+  version "1.6.11"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/xml-js/-/xml-js-1.6.11.tgz"
+  integrity sha1-kn0vaUf38cGaMW3Y7qNhTosY+Ok=
+  dependencies:
+    sax "^1.2.4"
+
+xml@^1.0.1:
+  version "1.0.1"
+  resolved "https://powerbi.pkgs.visualstudio.com/_packaging/PowerBIClients/npm/registry/xml/-/xml-1.0.1.tgz"
+  integrity sha1-eLpyAgApxbyHuKgaPPzXS0ovweU=
 
 y18n@^4.0.0:
   version "4.0.3"

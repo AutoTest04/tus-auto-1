@@ -1,13 +1,14 @@
 import { Locator } from '@playwright/test';
 
-import { LocatorHost, BaseComponent, retry, Logger } from '@trident/e2e-common';
+import { LocatorHost, retry, Logger } from '@trident/e2e-common';
 
 import { ArtifactListFilterGroupId } from '../../models/artifact';
 import { ArtifactJobListFilterGroupId } from '../../models/artifact-job';
+import { ComponentCommon } from '../component.common';
 
 const logger: Logger = new Logger('trident.component.tri-list-filter');
 
-export class TriListFilterComponent extends BaseComponent {
+export class TriListFilterComponent extends ComponentCommon {
     filterMenu: Locator;
     filterMenuClearButton: Locator;
     constructor(parent: LocatorHost) {
@@ -43,6 +44,7 @@ export class TriListFilterComponent extends BaseComponent {
         await this.filterSearchBox.click();
         await this.filterSearchBox.locator('input').fill('');
     }
+
 
     async isFilterOpen(): Promise<boolean> {
         return await this.filterMenu.isVisible();

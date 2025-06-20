@@ -4,6 +4,7 @@ import { NavigationPaneComponent } from '../components/navigation-pane.component
 import { WorkspaceViewComponent } from '../components/workspace/workspace-view.component';
 import { WorkspaceFlyoutComponent } from '../components/workspace/workspace-flyout.component';
 import { TriListFilterComponent } from '../components/tri-list-filter/tri-list-filter.component';
+import { PageCommon } from './page.common';
 
 
 
@@ -12,7 +13,7 @@ export interface WorkspacePageConfig {
     product?: string;
 }
 
-export class WorkspacePage extends BasePage {
+export class WorkspacePage extends PageCommon {
     readonly navigationPane = new NavigationPaneComponent(this.page);
     readonly workspaceFlyout = new WorkspaceFlyoutComponent(this.page);
     readonly workspaceView = new WorkspaceViewComponent(this.page);
@@ -39,6 +40,7 @@ export class WorkspacePage extends BasePage {
 
     readonly importMenu = this.locator('tri-menu-other.themeableElement.tri-menu-with-icons[role="menu"]');
     readonly importNotebookMenu = this.locator('tri-menu-other.themeableElement.tri-menu-with-icons[aria-activedescendant="Notebook_Local"]');
+    
 
 
     readonly importNotebookButton = this.importMenu.locator('button[aria-label="Notebook"]');
@@ -141,6 +143,8 @@ export class WorkspacePage extends BasePage {
     async isFlyoutCollapsed(): Promise<boolean> {
         return await this.workspaceFlyout.root.isHidden();
     }
+
+
     //#endregion
 
     //#region artifact()
