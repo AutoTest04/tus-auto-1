@@ -5,9 +5,10 @@ export class CreateNewPanelComponent extends BaseComponent {
         super(parent.locator('tri-create-new-panel'));
     }
 
+    readonly sections = this.locator('tri-create-new-section');
+    readonly allItems = this.getByTestId('new-panel-all-items');
+
     async setup(): Promise<void> {
         await this.root.waitFor();
     }
-
-    readonly sections = this.locator('tri-create-new-section');
 }

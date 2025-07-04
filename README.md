@@ -1,27 +1,90 @@
+## Prerequisite
 
+1. vsocde with [playwright-vsocde](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright) extension installed
+2. node 18.14+
 
-### 获取Develop库的权限 
+## 1. Acquire Access to the Develop Feed
 
-- `vsts-npm-auth -c .npmrc -f`  
-- `vsts-npm-auth -c .npmrc`  
----  
-### 安装依赖  
-- `npm install -g yarn`  
-- `yarn install`  
---- 
- 
-### 凭证权限及配置信息    
-*申请PBI-Test-UserAcc-Access权限 (约2个小时权限生效，请留意邮件通知！)*
- 
+  
 
-- [下载账号证书](https://eng.ms/docs/cloud-ai-platform/azure-data/azure-data-intelligence-platform/microsoft-fabric-platform/fabric-platform-shared-services/power-bi-troubleshooting-guides/troubleshooting/adhoc_account_user_details?tabs=MSIT)
+Use the following commands to authenticate and generate the `.npmrc` file with the appropriate credentials:
 
- 
- 
-将下载的.pfx证书存放到e2e根目录下
-在playwright.config.ts文件中修改(readFileSync('../bami-tenant-users-testuser1-fabricmsit11112024-20250306.pfx')
+  
 
---- 
- 
-### 运行测试用例
-yarn playwright test (请注意该命令仅运行./src/tests文件的所有Test case)
+```bash
+
+vsts-npm-auth -c .npmrc -f
+
+vsts-npm-auth -c .npmrc
+
+```
+
+  
+
+## 2. Install Project Dependencies
+
+  
+
+Install Yarn globally (if not already installed), then install project dependencies:
+
+  
+
+```bash
+
+npm install -g yarn
+
+yarn install
+
+```
+
+  
+
+## 3. Credential Permissions and Configuration
+
+  
+
+- Apply for **`PBI-Test-UserAcc-Access`** permissions.  
+
+- [Credential Permissions](https://eng.ms/docs/cloud-ai-platform/azure-data/azure-data-intelligence-platform/microsoft-fabric-platform/fabric-platform-shared-services/power-bi-troubleshooting-guides/troubleshooting/adhoc_account_user_details?tabs=MSIT)
+
+> *Note: Access may take approximately 2 hours to be granted. Please monitor your email for confirmation.*
+
+  
+
+## 4. Download and Configure the Test Certificate
+
+  
+
+- Download the `.pfx` certificate associated with the test account.
+
+- Place the certificate file in the root directory of the E2E project.
+
+- Update the `playwright.config.ts` file with the correct certificate path:
+
+  
+
+```ts
+
+readFileSync('../bami-tenant-users.pfx')
+
+```
+
+  
+
+## 5. Run Test Cases
+
+  
+
+Execute all test cases under the `./src/tests` directory:
+
+  
+
+```bash
+
+yarn playwright test
+
+```
+
+  
+
+> *Note: This command only runs the tests located in the `./src/tests` folder.*
