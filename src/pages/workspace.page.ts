@@ -1,4 +1,4 @@
-import { ArtifactService, BasePage, FeatureSwitches, GotoOptions, Workspace, WorkspaceService, } from '@trident/e2e-common';
+import { ArtifactService, FeatureSwitches, GotoOptions, Workspace, WorkspaceService, } from '@trident/e2e-common';
 import { v4 } from 'uuid';
 import { NavigationPaneComponent } from '../components/navigation-pane.component';
 import { WorkspaceViewComponent } from '../components/workspace/workspace-view.component';
@@ -41,7 +41,7 @@ export class WorkspacePage extends PageCommon {
     readonly importMenu = this.locator('tri-menu-other.themeableElement.tri-menu-with-icons[role="menu"]');
     readonly importNotebookMenu = this.locator('tri-menu-other.themeableElement.tri-menu-with-icons[aria-activedescendant="Notebook_Local"]');
     
-
+    readonly descriptionInput = this.getByTestId('workspace-settings-general-description-input');
 
     readonly importNotebookButton = this.importMenu.locator('button[aria-label="Notebook"]');
     readonly importReportButton = this.importMenu.locator('button[aria-label="Report, Paginated Report or Workbook"]');
@@ -89,7 +89,7 @@ export class WorkspacePage extends PageCommon {
         await this.workspaceView.root.waitFor();
     }
 
-    async gotoWorkspace(workspaceObjectId: string): Promise<void> {
+    async gotoWorkspacebyid(workspaceObjectId: string): Promise<void> {
         await this.goto(`/groups/${workspaceObjectId}`);
     }
 
@@ -113,6 +113,10 @@ export class WorkspacePage extends PageCommon {
 
         await this.settingsButton.click();
         await this.workspaceSettingsPanel.waitFor();
+    }
+
+    async inputDescription(description: string): Promise<void> {
+        await this.descriptionInput.fill(description);
     }
 
     async openImportMenu(): Promise<void> {
@@ -173,6 +177,15 @@ export class WorkspacePage extends PageCommon {
         await this.triListFilter.searchText(name);
     }
 
+    async deleteItem( artifactDisplayName: string) {
+        await this.filterItemByName(artifactDisplayName);
+        await this.workspaceView.getSingleArtifactByName(artifactDisplayName).clickDelete();
+    }
+
+    async deleteReport( artifactDisplayName: string) {
+        await this.filterItemByName(artifactDisplayName);
+        await this.workspaceView.getSingleArtifactByName(artifactDisplayName).clickReportDelete();
+    }
     //#endregion
     async clickMoreOptions(): Promise<void> {
         await this.workspaceView.plusNewButton.click();

@@ -1,46 +1,112 @@
-import { BaseComponent, Logger } from '@trident/e2e-common';
-import { expect } from '@playwright/test';
+import { BaseComponent } from '@trident/e2e-common';
+import fs from 'fs';
+import sharp from 'sharp';
+import path from 'path';
+import looksSame, { createDiff } from 'looks-same';
+
+const SNAPSHOT_DIR = path.join(__dirname, '../tests/GB18030test-snapshots');
 
 export class ComponentCommon extends BaseComponent {
-    async toHaveScreenshot(screenshotPath: string): Promise<void> {
-        await this.root.waitFor();
 
-        const box = await this.root.boundingBox();
-        if (box) {
-            // 扩展区域，比如四周各扩展 20px
-            const padding = 20;
+    private caseId: string | undefined;
 
-            const clip = {
-                x: Math.max(box.x - padding, 0),
-                y: Math.max(box.y - padding, 0),
-                width: box.width + padding * 2,
-                height: box.height + padding * 2,
-            };
-
-            // Use page.screenshot to support the 'clip' option
-            const page = this.root.page();
-            await page.screenshot({ path: screenshotPath, clip });
-        } else {
-            throw new Error('Cannot locate filter element to get bounding box');
-        }
-        
+    setCaseId(id: string) {
+        this.caseId = id;
     }
 
-    async toFullScreenshot(screenshotPath: string): Promise<void> {
+    private resolveFilename(name: string): string {
+        return this.caseId ? `${this.caseId}-${name}` : name;
+    }
+   
+    async toFullScreenshot(filename: string): Promise<void> {
+        const resolved = this.resolveFilename(filename);
+        const screenshotPath = path.join(SNAPSHOT_DIR, resolved);
+        fs.mkdirSync(path.dirname(screenshotPath), { recursive: true });
         await this.root.page().screenshot({ path: screenshotPath});
     }
 
-        /**
-     * 截图当前组件（带 padding），并与快照对比
-     * @param name 快照文件名，如 'my-component.png'
-     * @param padding 四周扩展区域，默认 20
-     */
-    async compareWithSnapshot(name: string, padding: number = 20): Promise<void> {
+    async toHaveScreenshot(filename: string, maxWidth = 1920, maxHeight = 1080): Promise<void> {
+    const { buffer } = await this.getComponentScreenshot();
+
+    const resolved = this.resolveFilename(filename);
+    const screenshotPath = path.join(SNAPSHOT_DIR, resolved);
+    fs.mkdirSync(path.dirname(screenshotPath), { recursive: true });
+
+    const image = sharp(buffer);
+    const metadata = await image.metadata();
+
+    // 判断是否超过最大尺寸
+    if (metadata.width && metadata.height &&
+        (metadata.width > maxWidth || metadata.height > maxHeight)) {
+
+        // 按比例缩放
+        const widthRatio = maxWidth / metadata.width;
+        const heightRatio = maxHeight / metadata.height;
+        const scaleRatio = Math.min(widthRatio, heightRatio);
+
+        const resizedBuffer = await image
+            .resize({
+                width: Math.floor(metadata.width * scaleRatio),
+                height: Math.floor(metadata.height * scaleRatio),
+                kernel: sharp.kernel.lanczos3, // 更清晰的缩放算法
+                fit: 'inside',
+                withoutEnlargement: true,
+            })
+            .toBuffer();
+
+        fs.writeFileSync(screenshotPath, resizedBuffer);
+    } else {
+        // 未超出最大尺寸，直接保存原图
+        fs.writeFileSync(screenshotPath, buffer);
+    }
+}
+
+    async toHaveScreenshot1(filename: string): Promise<void> {    
+        const { buffer } = await this.getComponentScreenshot();
+        const resolved = this.resolveFilename(filename);
+        const screenshotPath = path.join(SNAPSHOT_DIR, resolved);
+        fs.mkdirSync(path.dirname(screenshotPath), { recursive: true });
+        fs.writeFileSync(screenshotPath, buffer);
+    }
+
+
+    async compareWithSnapshot(filename: string, padding: number = 20): Promise<void> {
+        const { buffer } = await this.getComponentScreenshot(padding);
+        const resolved = this.resolveFilename(filename);
+
+        const currentScreenshotPath = path.join(SNAPSHOT_DIR, `current-${resolved}`);
+        const expectedScreenshotPath = path.join(SNAPSHOT_DIR, resolved);
+        const diffPath = path.join(SNAPSHOT_DIR, `diff-${resolved}`);
+
+        fs.writeFileSync(currentScreenshotPath, buffer);
+
+        if (!fs.existsSync(expectedScreenshotPath)) {
+            throw new Error(`Expected snapshot not found: ${expectedScreenshotPath}`);
+        }
+
+        const result = await looksSame(currentScreenshotPath, expectedScreenshotPath, {
+        tolerance: 0.3,
+        ignoreAntialiasing: false,
+        });
+
+        if (!result.equal) {
+            await createDiff({
+                reference: currentScreenshotPath,
+                current: expectedScreenshotPath,
+                diff: diffPath,
+                highlightColor: '#ff00ff',
+                });
+            throw new Error(`Snapshot mismatch! See diff: ${diffPath}`);
+         }else {
+            fs.rmSync(currentScreenshotPath, { force: true });
+         }
+    }
+    private async getComponentScreenshot(
+        padding = 20
+    ): Promise<{ buffer: Buffer, clip: { x: number; y: number; width: number; height: number } }> {
         await this.root.waitFor();
         const box = await this.root.boundingBox();
-        if (!box) {
-            throw new Error('Cannot locate element to get bounding box');
-        }
+        if (!box) throw new Error('Cannot locate element to get bounding box');
 
         const clip = {
             x: Math.max(box.x - padding, 0),
@@ -49,13 +115,8 @@ export class ComponentCommon extends BaseComponent {
             height: box.height + padding * 2,
         };
 
-        const page = this.root.page();
-        const screenshotBuffer = await page.screenshot({ clip });
-
-        // 使用 Playwright 断言进行快照比对
-        expect(screenshotBuffer).toMatchSnapshot(name, {
-            threshold: 0.2,
-        });
+        const buffer = await this.root.page().screenshot({ clip });
+        return { buffer, clip };
     }
 }
 

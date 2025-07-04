@@ -4,7 +4,6 @@ import {
   Paragraph,
   TextRun,
   HeadingLevel,
-  Media,
   ImageRun,
   IImageOptions
 } from 'docx';
@@ -12,6 +11,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import sizeOf from 'image-size';
 
+
+const SNAPSHOT_DIR = path.resolve(__dirname, '../tests/GB18030test-snapshots');
 
 // 定义数据结构
 interface SampleData {
@@ -76,7 +77,7 @@ export class TestDocBuilder {
 
     // 如果有图，复用 addImage
     if (step.imagePath) {
-      this.addImagefull(step.imagePath); // ✅ 直接复用你已有的方法
+      this.addImage(step.imagePath, true); // ✅ 直接复用你已有的方法
     }
     });
   }
@@ -90,38 +91,46 @@ export class TestDocBuilder {
     );
   }
 
-  addImage(imagePath: string, width = 500, height = 300) {
+    /**
+   * 插入截图图片
+   * @param filename 图片文件名（如 'filter.png'）
+   * @param useOriginalSize 是否使用原始尺寸，默认为 false
+   * @param width 自定义宽度（useOriginalSize = false 时生效）
+   * @param height 自定义高度（useOriginalSize = false 时生效）
+   */
+  addImage(
+    filename: string, 
+    useOriginalSize = false,
+    width = 500, 
+    height = 300
+  ) {
+    const imagePath = path.join(SNAPSHOT_DIR, filename);
     if (!fs.existsSync(imagePath)) return;
 
     const imageBuffer = fs.readFileSync(imagePath);
+
+    let transformation: { width: number; height: number };
+
+    if (useOriginalSize) {
+      const dimensions = sizeOf(imageBuffer);
+      if (!dimensions.width || !dimensions.height) return;
+      transformation = { 
+        width: dimensions.width, 
+        height: dimensions.height 
+      };
+    }else {
+      transformation = { width, height };
+    }
+
     const image = new ImageRun({
       data: imageBuffer,
-      transformation: { width, height },
+      transformation,
     } as IImageOptions);
 
     this.content.push(new Paragraph({ children: [image] }));
 
   }
 
-  addImagefull(imagePath: string) {
-    if (!fs.existsSync(imagePath)) return;
-
-    const imageBuffer = fs.readFileSync(imagePath);
-    const dimensions = sizeOf(imageBuffer);
-
-    if (!dimensions.width || !dimensions.height) return;
-
-    const image = new ImageRun({
-      data: imageBuffer,
-      transformation: { 
-        width: dimensions.width,
-        height: dimensions.height,
-       },
-    } as IImageOptions);
-
-    this.content.push(new Paragraph({ children: [image] }));
-
-  }
 
   addTest(test: {
     id: string;
@@ -145,8 +154,12 @@ export class TestDocBuilder {
       sections: [{ children: this.content }],
     });
 
+    const outputDir = path.resolve(__dirname, '../tests/testdoc');
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+    const filePath = path.join(outputDir, filename);
     const buffer = await Packer.toBuffer(doc);
-    const filePath = path.resolve(process.cwd(), filename);
     fs.writeFileSync(filePath, buffer);
     console.log(`✅ 文档已保存到: ${filePath}`);
   }

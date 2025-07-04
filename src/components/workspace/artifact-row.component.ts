@@ -12,12 +12,15 @@ export class ArtifactRowComponent extends BaseComponent {
     readonly taskCell = this.getByTestId('fluentListCell.task');
     readonly shareButton = this.getByTestId('quick-action-button-Share');
     readonly optionsMenu = this.getByTestId('options-menu');
+    readonly reportoptionsMenu = this.getByTestId('report-context-menu-button');
     readonly datasetOptionsMenu = this.getByTestId('dataset-options-menu-btn');
 
     readonly artifactMenu = this.page.locator(`//*[contains(@class, 'artifact-menu')]`);
     readonly managePermissionButton = this.artifactMenu.getByTestId('contextMenuItem.Manage permissions');
     readonly moveButton = this.artifactMenu.getByTestId('contextMenuItem.Move to');
     readonly deleteButton = this.artifactMenu.getByTestId('contextMenuItem.Delete');
+
+    readonly reportdeleteButton = this.artifactMenu.getByTestId('reportContextMenuItem.Delete');
     readonly deleteButtonQuickAction = this.getByTestId('quick-action-button-Delete');
     readonly renameButton = this.artifactMenu.getByTestId('contextMenuItem.Rename');
     readonly checkbox = this.getByTestId('checkbox-btn');
@@ -42,6 +45,11 @@ export class ArtifactRowComponent extends BaseComponent {
         await this.deleteButton.click();
     }
 
+    async clickReportDelete() {
+        await this.openReportContextMenu();
+        await this.reportdeleteButton.click();
+    }
+
     async clickDeleteQuickAction() {
         await this.nameCell.hover();
         await this.deleteButtonQuickAction.click();
@@ -61,6 +69,12 @@ export class ArtifactRowComponent extends BaseComponent {
     async openDatasetContextMenu() {
         await this.nameCell.hover();
         await this.datasetOptionsMenu.click();
+        await this.artifactMenu.waitFor();
+    }
+
+    async openReportContextMenu() {
+        await this.nameCell.hover();
+        await this.reportoptionsMenu.click();
         await this.artifactMenu.waitFor();
     }
 

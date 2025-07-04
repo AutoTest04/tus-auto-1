@@ -13,6 +13,7 @@
   "devDependencies": {
     "@playwright/test": "^1.51.1",
     "@types/node": "^22.13.9",
+    "@types/pngjs": "^6.0.5",
     "@types/uuid": "^10.0.0",
     "typescript": "^5.8.2"
   },
@@ -22,6 +23,7 @@
     "docx": "^9.5.1",
     "iconv-lite": "^0.6.3",
     "image-size": "^2.0.2",
+    "looks-same": "^9.0.1",
     "ts-morph": "^26.0.0"
   }
 }
