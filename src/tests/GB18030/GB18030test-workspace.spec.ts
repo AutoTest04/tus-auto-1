@@ -63,7 +63,16 @@ test.describe.serial('GB18030', () => {
         owner('v-jiaqihou');
 
         const id = '3.10.2';
-        await workspacePage.settingsButton.click({timeout: 2 * 1000});
+        await retry(async () => {
+            if (!await workspacePage.settingsButton.isVisible()) {
+                await workspacePage.workspaceView.moreMenuButton.click();
+                logger.info(`workspace settings button is invisible, click the menu button`);
+            }
+           // a relative short timeout to fast retry
+            await workspacePage.settingsButton.click({timeout: 2 * 1000});
+        }, { times: 3 });
+
+        await workspacePage.inputDescription(docbuilder.getShort(0))
         await workspacePage.triListFilter.toFullScreenshot(id + '-1.png');
 
         await workspacePage.triListFilter.toFullScreenshot(id + '-2.png');
@@ -84,29 +93,39 @@ test.describe.serial('GB18030', () => {
 
     });
 
-    test('1', async ({ workspacePage, page}) => {
+    test('工作区成员管理', async ({ workspacePage }) => {
         owner('v-jiaqihou');
 
         const id = '3.10.3';
-        workspacePage.triListFilter.setCaseId(id);
 
-        await workspacePage.filterItemByName('龭唉𫓧G㐁A𫟦01')
+        await retry(async () => {
+            if (!await workspacePage.manageAccessButton.isVisible()) {
+                await workspacePage.workspaceView.moreMenuButton.click();
+                logger.info(`manage access button is invisible, click the menu button`);
+            }
+            await workspacePage.manageAccessButton.click({ timeout: 2 * 1000 });
+        }, { times: 3 });
 
-        await page.waitForTimeout(1000);
+        await expect(workspacePage.manageAccessPanel.root).toBeVisible();
 
-        await workspacePage.triListFilter.toHaveScreenshot('3.png');
-        await workspacePage.triListFilter.compareWithSnapshot('3.png');
-        await page.waitForTimeout(1000);
+        await workspacePage.triListFilter.toFullScreenshot(id + '-2.png');
 
-                const tc = testCases.find(tc => tc.id === id);
+        const summaryImagePath = id + '-2.png';
+
+        const tc = testCases.find(tc => tc.id === id);
         if (tc) {
             docbuilder.addTest({
                 ...tc,
-                steps: tc.steps.map(stepText => ({ text: stepText }))
+                steps: tc.steps.map((stepText, i) => ({
+                    text: stepText,
+                    imagePath: i === 2 ? id + '2.png' : undefined
+                })),
+                summaryImagePath
             });
         }
-
     });
+
+    
 
 
 })

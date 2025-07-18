@@ -90,7 +90,12 @@ export class PlusNewPanelPage extends BasePage {
         // Wait for the filtered results to update
         //await plusNewPanelPage.waitForFilterApplied();
         const artifactCardTitles = await this.creationCard.allInnerTexts();
-        const artifactIndex = artifactCardTitles.indexOf(text);
+        const mainTitles = artifactCardTitles.map(title => title.split('\n')[0].trim());
+        console.log("Titles captured:", artifactCardTitles);
+        const artifactIndex = mainTitles.indexOf(text);
+        if (artifactIndex === -1) {
+            throw new Error(`Card with title "${text}" not found in ${artifactCardTitles.join(", ")}`);
+        }
         await this.targetCreationCard(artifactIndex).click();
 
     }
