@@ -24,7 +24,7 @@ test.describe.serial('GB18030', () => {
     test.beforeEach(async ({ workspacePage }) => {
 
         await workspacePage.goToMyWorkspace();
-        await workspacePage.gotoWorkspaceByID('33a0b877-2143-4d08-8537-aaa1343a0db3');
+        await workspacePage.gotoWorkspaceByID('399b2030-6cfc-458f-85c1-413f331b25ae');
     });
 
     test.afterAll(async () => {
@@ -38,11 +38,11 @@ test.describe.serial('GB18030', () => {
 
         await workspacePage.openNewItemPanel()
 
-        await plusNewPanelPage.ClickCard('report')
-        await reportPage.searchSM(docbuilder.getShort(10))
+        await plusNewPanelPage.ClickCard('Report')
+        await reportPage.searchSM(docbuilder.getShort(1))
         await page.waitForTimeout(1000);
         await reportPage.pickSMComponent.toHaveScreenshot(id + '-1.png')
-        await reportPage.createReportbySM(docbuilder.getShort(1))
+        await reportPage.createReportbySM(docbuilder.getShort(2))
         await workspacePage.backToWorkspace()
         await workspacePage.filterItemByName(docbuilder.getShort(10))
         await reportPage.pickSMComponent.toFullScreenshot(id + '-2.png')
@@ -69,7 +69,7 @@ test.describe.serial('GB18030', () => {
         await workspacePage.filterItemByName(docbuilder.getShort(10))
         await workspacePage.triListFilter.toHaveScreenshot(id + '-1.png')
         await workspacePage.clickItemByName(docbuilder.getShort(0))
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(3000);
 
         await reportPage.searchData(docbuilder.getShort(10))
         await reportPage.reportContent.toFullScreenshot(id + '-2.png')
