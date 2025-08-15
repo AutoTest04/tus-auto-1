@@ -6,5 +6,5 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 certificate/
-/src/test/GB18030/GBsnapshots/
-/src/test/GB18030/GB18030test-snapshots/
+/src/test/GBsnapshots/
+/src/test/GB18030test-snapshots/
