@@ -4,6 +4,8 @@ import { NavigationPaneComponent } from '../components/navigation-pane.component
 import { WorkspaceViewComponent } from '../components/workspace/workspace-view.component';
 import { WorkspaceFlyoutComponent } from '../components/workspace/workspace-flyout.component';
 import { TriListFilterComponent } from '../components/tri-list-filter/tri-list-filter.component';
+import { ManageAccessPanelComponent } from '../components/workspace-access/manage-access-panel.component';
+import { ItemCreation } from '../components/workspace/item-creation.component';
 import { PageCommon } from './page.common';
 
 
@@ -20,6 +22,10 @@ export class WorkspacePage extends PageCommon {
 
     readonly triListFilter = new TriListFilterComponent(this.page);
 
+    readonly manageAccessPanel = new ManageAccessPanelComponent(this.page);
+
+    readonly itemcreation = new ItemCreation(this.page);
+
     readonly workspaceService = this.createService(WorkspaceService);
     readonly gitIntegrationSettingsButton = this.locator('button').getByText('git integration');
     readonly general = this.locator('button').getByText('general');
@@ -32,9 +38,7 @@ export class WorkspacePage extends PageCommon {
     readonly settingsButton = this.getByTestId('workspace-settings').locator('visible=true');
     readonly licensemode = this.locator('#tri-radio-button-1');
     readonly selectlicense = this.locator('button').getByText('Select license')
-
     readonly plusNewMenu = this.getByTestId('plus-new-menu');
-
     readonly plusNewMenuButtons = this.plusNewMenu.locator(`button`);
     readonly plusNewMenuMoreOptionsButton = this.plusNewMenu.getByTestId('more-options-btn');
 
@@ -173,6 +177,7 @@ export class WorkspacePage extends PageCommon {
         await items.itemName.click();
     }
 
+
     async filterItemByName(name: string): Promise<void> {
         await this.triListFilter.searchText(name);
     }
@@ -186,13 +191,18 @@ export class WorkspacePage extends PageCommon {
         await this.filterItemByName(artifactDisplayName);
         await this.workspaceView.getSingleArtifactByName(artifactDisplayName).clickReportDelete();
     }
+
+    async inputCardName( name: string) {
+        await this.itemcreation.locator('input').fill(name);
+    }
+    async clickCardBtn() {
+        await this.itemcreation.createBtn.click();
+    }
     //#endregion
     async clickMoreOptions(): Promise<void> {
         await this.workspaceView.plusNewButton.click();
         await this.plusNewMenuMoreOptionsButton.click();
     }
-
-
 }
 
 function createUniqWorkspaceName(workspaceDoamin = ''): string {

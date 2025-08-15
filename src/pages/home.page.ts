@@ -2,14 +2,17 @@ import { BasePage, createService, FeatureSwitchRecord, IdentityService } from '@
 
 import { HeaderComponent } from '../components/header/header.component';
 import { RecommendationComponent } from '../components/home/recommendation.component';
+import { SettingsPanel } from '../components/home/settings-panel.component';
 
 export class HomePage extends BasePage {
     readonly recommendation = new RecommendationComponent(this.page);
+    readonly settingsPanel = new SettingsPanel(this.page);
     readonly header = new HeaderComponent(this.page);
     readonly recommendedShiftRight = this.page.getByTestId('carousel-shiftRight-btn');
     readonly quickAccessRecent = this.page.getByTestId('quick-access-recent');
     readonly quickAccessFavorite = this.page.getByTestId('quick-access-favorites');
     readonly quickAccessShared = this.page.getByTestId('quick-access-shared');
+    readonly settingsButton = this.page.getByTestId('settings-button');
     readonly inputField = this.page.getByTestId('keyword-search-filter');
     readonly workspaceCreatePanel = this.page.getByTestId('workspace-create-panel');
     readonly workspaceCreateApply = this.workspaceCreatePanel.getByTestId('workspace-create-apply-btn');
@@ -61,6 +64,19 @@ export class HomePage extends BasePage {
     async inputToWrokSpaceName (name: string){
         const nameBox = this.workspaceCreatePanel.getByTestId('workspace-create-name-input');
         await nameBox.fill(name);
+    }
+
+    async openSettingsaPanel(): Promise<void> {
+        await this.settingsButton.click();
+        const settingsPanelVisible = await this.settingsPanel.root.isVisible();
+        if (!settingsPanelVisible) {
+            await this.settingsButton.click();
+        }
+    }
+
+    async openAdminPortal(): Promise<void> {
+        await this.openSettingsaPanel();
+        await this.settingsPanel.adminPortalButton.click();
     }
 
     async setupRecommendation(): Promise<void> {

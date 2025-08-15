@@ -1,11 +1,13 @@
 import { expect, LocatorHost, BaseComponent } from '@trident/e2e-common';
 
+import { EmailListComponent } from '../shared/email-list.component';
 
 export class AddAccessPanelComponent extends BaseComponent {
     constructor(parent: LocatorHost) {
         super(parent.getByTestId('workspace-access-add-access-panel'));
     }
 
+    readonly emailsList = new EmailListComponent(this.page);
 
     readonly title = this.getByTestId('add-access-title');
     readonly backButton = this.getByTestId('add-access-back-btn');
@@ -24,6 +26,11 @@ export class AddAccessPanelComponent extends BaseComponent {
         await this.backButton.click();
     }
 
+    async inputUsers(users: string[]): Promise<void> {
+        for (const user of users) {
+            await this.emailsList.addUser(user);
+        }
+    }
 
     async selectRole(role: string): Promise<void> {
         await this.roleSelect.click();

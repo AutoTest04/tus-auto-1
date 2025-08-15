@@ -76,8 +76,12 @@ export class ReportPage extends PageCommon {
         await this.saveReport(reportName);
     }
 
-    public async searchSM(SMname: string): Promise<void> {
+    public async clickUsePublishedDataSet(): Promise<void> {
         await this.usePublishedDataSet.click();
+    }
+
+    public async searchSM(SMname: string): Promise<void> {
+        await this.clickUsePublishedDataSet();
         await this.pickSMComponent.filterSearchBox.click();
         await this.pickSMComponent.filterSearchBox.locator('input').fill(SMname);
     }
