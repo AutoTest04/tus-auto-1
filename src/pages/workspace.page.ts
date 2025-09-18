@@ -54,6 +54,12 @@ export class WorkspacePage extends PageCommon {
 
     readonly importPanel = this.frameLocator("[data-testid='iframe-panel-de-ds']");
 
+    
+    readonly filterPanel = this.getByTestId('filterMenu');
+    readonly createPipelineDialog = this.locator('p.create-pipeline-dialog-description');
+    readonly createAppDialog = this.locator('xpath=//simple-dialog');
+    readonly createAppButton = this.page.getByTestId('create-app').locator('visible=true');
+
     readonly uploadButton = this.importPanel.locator('button').filter({ hasText: 'Upload' });
     fluentListColumns = (col: string) =>
         this.workspaceView.getByTestId(`fluentListCell.${col}`);

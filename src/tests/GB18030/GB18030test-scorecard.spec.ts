@@ -34,7 +34,7 @@ test.describe.serial('GB18030', () => {
         logger.info('Test document saved successfully.');
     });
 
-    test('创建仪表板', async ({ plusNewPanelPage, workspacePage, page, reportPage }) => {
+    test('创建仪表板', async ({ plusNewPanelPage, workspacePage, page, scorecardPage }) => {
         owner('v-jiaqihou');
         const id = '3.4.1';
 

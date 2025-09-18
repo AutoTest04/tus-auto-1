@@ -1,9 +1,11 @@
-import { expect, TestBuilder, Logger, owner, FabricCapacityService, retry } from '@trident/e2e-common';
+import { TestBuilder, Logger, owner, FabricCapacityService } from '@trident/e2e-common';
 import { WorkspacePage } from '../../pages/workspace.page';
 import { ReportPage } from '../../pages/report.page';
 import { PlusNewPanelPage } from '../../pages/plus-new-panel.page';
 import { TestDocBuilder } from '../../utils/test-doc-builder';
 import { loadSampleData, loadTestCases } from '../../utils/testdata-loader';
+import { captureElementScreenshot, captureFullPageScreenshot, snapshotsDir2 } from '../../utils/test-helper';
+import * as path from 'path';
 
 const logger = new Logger('workspace-view.tests');
 
@@ -36,16 +38,15 @@ test.describe.serial('GB18030', () => {
         owner('v-jiaqihou');
         const id = '3.1.1';
 
-        await workspacePage.openNewItemPanel()
-
-        await plusNewPanelPage.ClickCard('Report')
-        await reportPage.searchSM(docbuilder.getShort(1))
+        await workspacePage.openNewItemPanel();
+        await plusNewPanelPage.ClickCard('Report');
+        await reportPage.searchSM(docbuilder.getShort(1));
         await page.waitForTimeout(1000);
-        await reportPage.pickSMComponent.toHaveScreenshot(id + '-1.png')
+        await captureElementScreenshot(reportPage.pickSMComponent.root, path.join(snapshotsDir2, id + '-1.png'))
         await reportPage.createReportbySM(docbuilder.getShort(2))
         await workspacePage.backToWorkspace()
         await workspacePage.filterItemByName(docbuilder.getShort(10))
-        await reportPage.pickSMComponent.toFullScreenshot(id + '-2.png')
+        await captureFullPageScreenshot(page, path.join(snapshotsDir2, id + '-2.png'))
 
         const summaryImagePath = id + '-2.png';
         const tc = testCases.find(tc => tc.id === id);
@@ -59,7 +60,6 @@ test.describe.serial('GB18030', () => {
                 summaryImagePath
             });
         }
-        //await page.waitForTimeout(10000);
     })
 
     test('搜索报表中的字段', async ({ workspacePage, page, reportPage }) => {

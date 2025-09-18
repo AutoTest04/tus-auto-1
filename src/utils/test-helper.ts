@@ -3,6 +3,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { loadSampleData } from './testdata-loader';
 
+export const snapshotsDir = path.join(__dirname, '../tests/GBsnapshots');
+export const snapshotsDir2 = path.join(__dirname, '../tests/GB18030test-snapshots');
+
 /**
  * 测试输入多个值并截图
  */
@@ -31,7 +34,7 @@ export async function testInputSamplesAndCapture(
         samples = data.shortSamples;
     }
 
-    const screenshotDir = path.join(__dirname, '../tests/GBsnapshots', idPrefix);
+    const screenshotDir = path.join(__dirname, snapshotsDir, idPrefix);
 
     for (let i = 0; i < samples.length; i++) {
         const input = samples[i];

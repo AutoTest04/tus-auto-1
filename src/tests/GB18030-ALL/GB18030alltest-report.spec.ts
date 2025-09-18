@@ -19,7 +19,7 @@ const { test } = TestBuilder.create()
 .p('reportPage', ReportPage)
 
 const docbuilder = new TestDocBuilder(sampleData);
-
+7
 
 test.describe.serial('GB18030', () => {
 

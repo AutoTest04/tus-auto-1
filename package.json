@@ -4,14 +4,15 @@
   "main": "index.js",
   "scripts": {
     "e2e": "playwright test",
-    "e2e-headed": "playwright test --headed"
+    "e2e:headed": "playwright test --headed",
+    "e2e:headed:report": "playwright test --headed src/tests/GB18030/GB18030test-report.spec.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.51.1",
+    "@playwright/test": "^1.54.2",
     "@types/node": "^22.13.9",
     "@types/pngjs": "^6.0.5",
     "@types/uuid": "^10.0.0",
